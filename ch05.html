@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>think stats</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" id="probability" data-pdf-bookmark="Chapter 5. Probability">
+<h1>Probability</h1>
+
+
+<p>In <a data-type="xref" href="ch02.html#descriptive">Chapter 2</a>, I said that a probability is a frequency expressed as a fraction of the sample size. That’s one definition of probability, but it’s not the only one. In fact, the meaning of probability is a topic of some controversy.</p>
+
+<p>We’ll start with the uncontroversial parts and work our way up. There is general agreement that a probability is a real value between 0 and 1 that is intended to be a quantitative measure corresponding to the qualitative notion that some things are more likely than others.</p>
+
+<p>The “things” we assign probabilities to are called <em>events</em>. If <em>E</em> represents an event, then <em>P</em>(<em>E</em>) represents the probability that <em>E</em> will occur. A situation where <em>E</em> might or might not happen is called a <em>trial</em>.</p>
+
+<p>As an example, suppose you have a standard six-sided die and want to know the probability of rolling a six. Each roll is a trial. Each time a six appears is considered a <em>success</em>; other trials are considered <em>failures</em>. These terms are used even in scenarios where “success” is bad and “failure” is good.</p>
+
+<p>If we have a finite sample of <em>n</em> trials and we observe <em>s</em> successes, the probability of success is <em>s</em>/<em>n</em>. If the set of trials is infinite, defining probabilities is a little trickier, but most people are willing to accept probabilistic claims about a hypothetical series of identical trials, like tossing a coin or rolling a die.</p>
+
+<p>We start to run into trouble when we talk about probabilities of unique events. For example, we might like to know the probability that a candidate will win an election. But every election is unique, so there is no series of identical trials to consider.</p>
+
+<p>In cases like this, some people would say that the notion of probability does not apply. This position is sometimes called <em>frequentism</em> because it defines probability in terms of frequencies. If there is no set of identical trials, there is no probability.</p>
+
+<p>Frequentism is philosophically safe, but frustrating because it limits the scope of probability to physical systems that are either random (like atomic decay) or so unpredictable that we model them as random (like a tumbling die). Anything involving people is pretty much off the table.</p>
+
+<p>An alternative is <em>Bayesianism</em>, which defines probability as a degree of belief that an event will occur. By this definition, the notion of probability can be applied in almost any circumstance. One difficulty with Bayesian probability is that it depends on a person’s state of knowledge; people with different information might have different degrees of belief about the same event. For this reason, many people think that Bayesian probabilities are more subjective than frequency probabilities.</p>
+
+<p>As an example, what is the probability that Thaksin Shinawatra is the Prime Minister of Thailand? A frequentist would say that there is no probability for this event because there is no set of trials. Thaksin either is, or is not, the PM; it’s not a question of probability.</p>
+
+<p>In contrast, a Bayesian would be willing to assign a probability to this event based on his or her state of knowledge. For example, if you remember that there was a coup in Thailand in 2006, and you are pretty sure Thaksin was the PM who was ousted, you might assign a probability like 0.1, which acknowledges the possibility that your recollection is incorrect, or that Thaksin has been reinstated.</p>
+
+<p>If you consult Wikipedia, you will learn that Thaksin is not the PM of Thailand (at the time I am writing). Based on this information, you might revise your probability estimate to 0.01, reflecting the possibility that Wikipedia is wrong.</p>
+
+
+
+
+
+
+<section data-type="sect1" id="a0000000111" data-pdf-bookmark="Rules of Probability">
+<h1>Rules of Probability</h1>
+
+<p>For frequency probabilities, we can derive rules that relate probabilities of different events. Probably the best known of these rules is:</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) =
+<em>P</em>(<em>A</em>)
+<em>P</em>(<em>B</em>)  Warning: not always
+true!</p>
+
+<p>where <em>P</em>(<em>A</em> and <em>B</em>) is the probability that events <em>A</em> and <em>B</em> both occur. This formula is easy to remember; the only problem is that it is <em>not always true</em>. This formula only applies if <em>A</em> and <em>B</em> are <em>independent</em>, which means that if I know <em>A</em> occurred, that doesn’t change the probability of <em>B</em>, and vice versa.</p>
+
+<p>For example, if <em>A</em> is tossing a coin and getting heads, and <em>B</em> is rolling a die and getting 1, <em>A</em> and <em>B</em> are independent, because the coin toss doesn’t tell me anything about the die roll.</p>
+
+<p>But if I roll two dice, and <em>A</em> is getting at least one six, and <em>B</em> is getting two sixes, <em>A</em> and <em>B</em> are not independent, because if I know that <em>A</em> occurred, the probability of <em>B</em> is higher, and if I know <em>B</em> occurred, the probability of <em>A</em> is 1.</p>
+
+<p>When <em>A</em> and <em>B</em> are not independent, it is often useful to compute the conditional probability, <em>P</em>(<em>A</em>|<em>B</em>), which is the probability of <em>A</em> given that we know <em>B</em> occurred:</p>
+
+<p>From that, we can derive the general relation</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) =
+<em>P</em>(<em>A</em>)
+<em>P</em>(<em>B</em>|<em>A</em>)</p>
+
+<p>This might not be as easy to remember, but if you translate it into English, it should make sense: “The chance of both things happening is the chance that the first one happens, and then the second one given the first.”</p>
+
+<p>There is nothing special about the order of events, so we could also write</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) =
+<em>P</em>(<em>B</em>)
+<em>P</em>(<em>A</em>|<em>B</em>)</p>
+
+<p>These relationships hold whether <em>A</em> and <em>B</em> are independent or not. If they are independent, then <em>P</em>(<em>A</em>|<em>B</em>) = <em>P</em>(<em>A</em>), which gets us back where we started.</p>
+
+<p>Because all probabilities are in the range 0 to 1, it is easy to show that</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) ≤ <em>P</em>(<em>A</em>)</p>
+
+<p>To picture this, imagine a club that only admits people who satisfy some requirement, <em>A</em>. Now suppose they add a new requirement for membership, <em>B</em>. It seems obvious that the club will get smaller, or stay the same if it happens that all the members satisfy <em>B</em>. But there are some scenarios where people are surprisingly bad at this kind of analysis. For examples and discussion of this phenomenon, see <a href="http://wikipedia.org/wiki/Conjunction_fallacy">http://wikipedia.org/wiki/Conjunction_fallacy</a>.</p>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Monty Hall</p>
+
+<p>The Monty Hall problem might be the most contentious question in the history of probability. The scenario is simple, but the correct answer is so counterintuitive that many people just can’t accept it, and many smart people have embarrassed themselves not just by getting it wrong but by arguing the wrong side, aggressively, in public.</p>
+
+<p>Monty Hall was the original host of the game show <em>Let’s Make a Deal</em>. The Monty Hall problem is based on one of the regular games on the show. If you are on the show, here’s what happens:</p>
+<ul>
+<li>
+<p>Monty shows you three closed doors and tells you that there is a prize behind each door: one prize is a car, the other two are less valuable prizes like peanut butter and fake fingernails. The prizes are arranged at random.</p>
+</li>
+<li>
+<p>The object of the game is to guess which door has the car. If you guess right, you get to keep the car.</p>
+</li>
+<li>
+<p>So you pick a door, which we will call Door A. We’ll call the other doors B and C.</p>
+</li>
+<li>
+<p>Before opening the door you chose, Monty likes to increase the suspense by opening either Door B or C, whichever does not have the car. (If the car is actually behind Door A, Monty can safely open B or C, so he chooses one at random).</p>
+</li>
+<li>
+<p>Then Monty offers you the option to stick with your original choice or switch to the one remaining unopened door.</p>
+</li>
+</ul>
+
+<p>The question is, should you “stick” or “switch” or does it make no difference?</p>
+
+<p>Most people have the strong intuition that it makes no difference. There are two doors left, they reason, so the chance that the car is behind Door A is 50%.</p>
+
+<p>But that is wrong. In fact, the chance of winning if you stick with Door A is only 1/3; if you switch, your chances are 2/3. I will explain why, but I don’t expect you to believe me.</p>
+
+<p>The key is to realize that there are three possible scenarios: the car is behind Door A, B, or C. Since the prizes are arranged at random, the probability of each scenario is 1/3.</p>
+
+<p>If your strategy is to stick with Door A, then you will win only in Scenario A, which has probability 1/3.</p>
+
+<p>If your strategy is to switch, you will win in either Scenario B or Scenario C, so the total probability of winning is 2/3.</p>
+
+<p>If you are not completely convinced by this argument, you are in good company. When a friend presented this solution to Paul Erdős, he replied, “No, that is impossible. It should make no difference.”<a data-type="noteref" id="idp1336992-marker" href="ch05.html#idp1336992"><sup>10</sup></a></p>
+
+<p>No amount of argument could convince him. In the end, it took a computer simulation to bring him around.</p>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Poincaré</p>
+
+<p>Henri Poincaré was a French mathematician who taught at the Sorbonne around 1900. The following anecdote about him is probably fabricated, but it makes an interesting probability problem.</p>
+
+<p>Supposedly, Poincaré suspected that his local bakery was selling loaves of bread that were lighter than the advertised weight of 1 kg, so every day for a year he bought a loaf of bread, brought it home and weighed it. At the end of the year, he plotted the distribution of his measurements and showed that it fit a normal distribution with mean 950 g and standard deviation 50 g. He brought this evidence to the bread police, who gave the baker a warning.</p>
+
+<p>For the next year, Poincaré continued the practice of weighing his bread every day. At the end of the year, he found that the average weight was 1,000 g, just as it should be, but again he complained to the bread police, and this time they fined the baker.</p>
+
+<p>Why? Because the shape of the distribution was asymmetric. Unlike the normal distribution, it was skewed to the right, which is consistent with the hypothesis that the baker was still making 950 g loaves, but deliberately giving Poincaré the heavier ones.</p>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Another Rule of Probability</p>
+
+<p>If two events are <em>mutually exclusive</em>, that means that only one of them can happen, so the conditional probabilities are 0:</p>
+
+<p><em>P</em>(<em>A</em>|<em>B</em>)
+= <em>P</em>(<em>B</em>|<em>A</em>)
+= 0</p>
+
+<p>In this case, it is easy to compute the probability of either event:</p>
+
+<p><em>P</em>(<em>A</em> or <em>B</em>) =
+<em>P</em>(<em>A</em>) + <em>P</em>(<em>B</em>)
+ Warning: not always true.</p>
+
+<p>But remember that this only applies if the events are mutually exclusive. In general, the probability of <em>A</em> or <em>B</em> or both is:</p>
+
+<p><em>P</em>(<em>A</em> or <em>B</em>) =
+<em>P</em>(<em>A</em>) + <em>P</em>(<em>B</em>) − <em>P</em>(<em>A</em> and <em>B</em>)</p>
+
+<p>The reason we have to subtract off <em>P</em>(<em>A</em> and <em>B</em>) is that otherwise it gets counted twice. For example, if I flip two coins, the chance of getting at least one tails is 1/2 + 1/2 − 1/4. I have to subtract 1/4 because otherwise I am counting heads-heads twice. The problem becomes even clearer if I toss three coins.</p>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Binomial Distribution</p>
+
+<p>If I roll 100 dice, the chance of getting all sixes is (1/6)<em>100</em>. And the chance of getting no sixes is (5/6)<em>100</em>.</p>
+
+<p>Those cases are easy, but more generally, we might like to know the chance of getting <em>k</em> sixes, for all values of <em>k</em> from 0 to 100. The answer is the <em>binomial distribution</em>, which has this PMF:</p>
+
+<p>where <em>n</em> is the number of trials, <em>p</em> is the probability of success, and <em>k</em> is the number of successes.</p>
+
+<p>The <em>binomial coefficient</em> is pronounced “n choose k”, and it can be computed directly like this:</p>
+
+<p>Or recursively like this</p>
+
+<p>with two base cases: if <em>n</em> = 0 the result is 0; if <em>k</em> = 0 the result is 1. If you download <a href="http://thinkstats.com/thinkstats.py">http://thinkstats.com/thinkstats.py</a> you will see a function named <code>Binom</code> that computes the binomial coefficient with reasonable efficiency.</p>
+
+<p>.</p></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section data-type="sect1" id="a0000000130" data-pdf-bookmark="Streaks and Hot Spots">
+<h1>Streaks and Hot Spots</h1>
+
+<p>People do not have very good intuition for random processes. If you ask people to generate “random” numbers, they tend to generate sequences that are random-looking, but actually more ordered than real random sequences. Conversely, if you show them a real random sequence, they tend to see patterns where there are none.</p>
+
+<p>An example of the second phenomenon is that many people believe in “streaks” in sports: a player that has been successful recently is said to have a “hot hand”; a player that has been unsuccessful is “in a slump.”</p>
+
+<p>Statisticians have tested these hypotheses in a number of sports, and the consistent result is that there is no such thing as a streak.<a data-type="noteref" id="idp1380144-marker" href="ch05.html#idp1380144"><sup>11</sup></a> If you assume that each attempt is independent of previous attempts, you will see occasional long strings of successes or failures. These apparent streaks are not sufficient evidence that there is any relationship between successive attempts.</p>
+
+<p>A related phenomenon is the clustering illusion, which is the tendency to see clusters in spatial patterns that are actually random (see <a href="http://wikipedia.org/wiki/Clustering_illusion">http://wikipedia.org/wiki/Clustering_illusion</a>).</p>
+
+<p>To test whether an apparent cluster is likely to be meaningful, we can simulate the behavior of a random system to see whether it is likely to produce a similar cluster. This process is called <em>Monte Carlo</em> simulation because generating random numbers is reminiscent of casino games (and Monte Carlo is famous for its casino).</p>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Bayes’s Theorem</p>
+
+<p>Bayes’s theorem is a relationship between the conditional probabilities of two events. A conditional probability, often written <em>P</em>(<em>A</em>|<em>B</em>) is the probability that Event <em>A</em> will occur given that we know that Event <em>B</em> has occurred. Bayes’s theorem states:</p>
+
+<p>To see that this is true, it helps to write <em>P</em>(<em>A</em> and <em>B</em>), which is the probability that A and B occur</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) =
+<em>P</em>(<em>A</em>)
+<em>P</em>(<em>B</em>|<em>A</em>)</p>
+
+<p>But it is also true that</p>
+
+<p><em>P</em>(<em>A</em> and <em>B</em>) =
+<em>P</em>(<em>B</em>)
+<em>P</em>(<em>A</em>|<em>B</em>)</p>
+
+<p>So</p>
+
+<p><em>P</em>(<em>B</em>)
+<em>P</em>(<em>A</em>|<em>B</em>) =
+<em>P</em>(<em>A</em>)
+<em>P</em>(<em>B</em>|<em>A</em>)</p>
+
+<p>Dividing through by <em>P</em>(<em>B</em>) yields Bayes’s theorem.<a data-type="noteref" id="idp1404128-marker" href="ch05.html#idp1404128"><sup>12</sup></a></p>
+
+<p>Bayes’s theorem is often interpreted as a statement about how a body of evidence, <em>E</em>, affects the probability of a hypothesis, <em>H</em>:</p>
+
+<p>In words, this equation says that the probability of <em>H</em> after you have seen <em>E</em> is the product of <em>P</em>(<em>H</em>), which is the probability of <em>H</em> before you saw the evidence, and the ratio of <em>P</em>(<em>E</em>|<em>H</em>), the probability of seeing the evidence assuming that <em>H</em> is true, and <em>P</em>(<em>E</em>), the probability of seeing the evidence under any circumstances (<em>H</em> true or not).</p>
+
+<p>This way of reading Bayes’s theorem is called the “diachronic” interpretation because it describes how the probability of a hypothesis gets <em>updated</em> over time, usually in light of new evidence. In this context, <em>P</em>(<em>H</em>) is called the <em>prior</em> probability and <em>P</em>(<em>H</em>|<em>E</em>) is called the <em>posterior</em>. <em>P</em>(<em>E</em>|<em>H</em>) is the <em>likelihood of the evidence</em>, and <em>P</em>(<em>E</em>) is the <em>normalizing constant</em>.</p>
+
+<p>A classic use of Bayes’s theorem is the interpretation of clinical tests. For example, routine testing for illegal drug use is increasingly common in workplaces and schools (see <a href="http://aclu.org/drugpolicy/testing">http://aclu.org/drugpolicy/testing</a>). The companies that perform these tests maintain that the tests are sensitive, which means that they are likely to produce a positive result if there are drugs (or metabolites) in a sample, and specific, which means that they are likely to yield a negative result if there are no drugs.</p>
+
+<p>Studies from the Journal of the American Medical Association<a data-type="noteref" id="idp1422048-marker" href="ch05.html#idp1422048"><sup>13</sup></a> estimate that the sensitivity of common drug tests is about 60% and the specificity is about 99%.</p>
+
+<p>Now suppose these tests are applied to a workforce where the actual rate of drug use is 5%. Of the employees who test positive, how many of them actually use drugs?</p>
+
+<p>In Bayesian terms, we want to compute the probability of drug use given a positive test, <em>P</em>(<em>D</em>|<em>E</em>). By Bayes’s theorem:</p>
+
+<p>The prior, <em>P</em>(<em>D</em>) is the probability of drug use before we see the outcome of the test, which is 5%. The likelihood, <em>P</em>(<em>E</em>|<em>D</em>), is the probability of a positive test assuming drug use, which is the sensitivity.</p>
+
+<p>The normalizing constant, <em>P</em>(<em>E</em>) is a little harder to evaluate. We have to consider two possibilities, <em>P</em>(<em>E</em>|<em>D</em>) and <em>P</em>(<em>E</em>|<em>N</em>), where <em>N</em> is the hypothesis that the subject of the test does not use drugs:</p>
+
+<p><em>P</em>(<em>E</em>) =
+<em>P</em>(<em>D</em>)
+<em>P</em>(<em>E</em>|<em>D</em>) + <em>P</em>(<em>N</em>)
+<em>P</em>(<em>E</em>|<em>N</em>)</p>
+
+<p>The probability of a false positive, <em>P</em>(<em>E</em>|<em>N</em>), is the complement of the specificity, or 1%.</p>
+
+<p>Putting it together, we have</p>
+
+<p>Plugging in the given values yields <em>P</em>(<em>D</em>|<em>E</em>) = 0.76, which means that of the people who test positive, about 1 in 4 is innocent.</p>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>.</p></div>
+
+<p>.</p>
+<div data-type="example">
+<h5/>
+
+<p>=== Glossary</p>
+<dl>
+<dt>Bayesianism</dt>
+<dd>
+<p>A more general interpretation that uses probability to represent a subjective degree of belief.</p>
+</dd>
+<dt>coefficient of variation</dt>
+<dd>
+<p>A statistic that measures spread, normalized by central tendency, for comparison between distributions with different means.</p>
+</dd>
+<dt>event</dt>
+<dd>
+<p>Something that may or may not occur, with some probability.</p>
+</dd>
+<dt>failure</dt>
+<dd>
+<p>A trail in which no event occurs.</p>
+</dd>
+<dt>frequentism</dt>
+<dd>
+<p>A strict interpretation of probability that only applies to a series of identical trials.</p>
+</dd>
+<dt>independent</dt>
+<dd>
+<p>Two events are independent if the occurrence of one has no effect on the probability of another.</p>
+</dd>
+<dt>likelihood of the evidence</dt>
+<dd>
+<p>One of the terms in Bayes’s theorem, the probability of the evidence conditioned on a hypothesis.</p>
+</dd>
+<dt>Monte Carlo simulation</dt>
+<dd>
+<p>A method of computing probabilities by simulating random processes (see <a href="http://wikipedia.org/wiki/Monte_Carlo_method">http://wikipedia.org/wiki/Monte_Carlo_method</a>).</p>
+</dd>
+<dt>normalizing constant</dt>
+<dd>
+<p>The denominator of Bayes’s Theorem, used to normalize the result to be a probability.</p>
+</dd>
+<dt>posterior</dt>
+<dd>
+<p>A probability computed by a Bayesian update.</p>
+</dd>
+<dt>prior</dt>
+<dd>
+<p>A probability before a Bayesian update.</p>
+</dd>
+<dt>success</dt>
+<dd>
+<p>A trial in which an event occurs.</p>
+</dd>
+<dt>trial</dt>
+<dd>
+<p>One in a series of occasions when an event might occur.</p>
+</dd>
+<dt>update</dt>
+<dd>
+<p>The process of using data to revise a probability.</p>
+</dd>
+</dl></div>
+</section>
+
+
+
+
+
+
+
+<aside data-type="footnotes"><p data-type="footnote" id="idp1336992"><a href="ch05.html#idp1336992-marker"><sup>10</sup></a> See Hoffman, <em>The Man Who Loved Only Numbers</em>, page 83.</p><p data-type="footnote" id="idp1380144"><a href="ch05.html#idp1380144-marker"><sup>11</sup></a> For example, see Gilovich, Vallone, and Tversky, “The hot hand in basketball: On the misperception of random sequences,” 1985.</p><p data-type="footnote" id="idp1404128"><a href="ch05.html#idp1404128-marker"><sup>12</sup></a> See <a href="http://wikipedia.org/wiki/Q.E.D.">http://wikipedia.org/wiki/Q.E.D.</a>!</p><p data-type="footnote" id="idp1422048"><a href="ch05.html#idp1422048-marker"><sup>13</sup></a> I got these numbers from Gleason and Barnum, “Predictive Probabilities In Employee Drug-Testing,” at <a href="http://piercelaw.edu/risk/vol2/winter/gleason.htm">http://piercelaw.edu/risk/vol2/winter/gleason.htm</a>.</p></aside></section>
+  </body>
+</html>
